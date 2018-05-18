@@ -1,5 +1,6 @@
 package club.yuxuan.yun.mvc;
 
+import club.yuxuan.yun.model.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class TestController {
     
     @RequestMapping("/")
     public String home () {
-        return "Test Home";
+        return new Test().getData().toString();
     }
     
 }

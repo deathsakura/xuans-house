@@ -9,20 +9,14 @@
     <packaging>jar</packaging>
 
     <name>starter</name>
-    <description>maven pom plugn for house</description>
+    <description>starter for house</description>
 
     <parent>
         <groupId>club.yuxuan.yun</groupId>
         <artifactId>xuans-house</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>10</java.version>
-    </properties>
-
+    
     <dependencies>
         <dependency>
             <groupId>club.yuxuan.yun</groupId>
