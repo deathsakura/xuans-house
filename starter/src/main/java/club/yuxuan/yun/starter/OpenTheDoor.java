@@ -1,5 +1,6 @@
 package club.yuxuan.yun.starter;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
@@ -9,7 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2018/5/12
  **/
 @SpringBootApplication(scanBasePackages = "club.yuxuan.yun.*")
-public class StarterApplication {
+@MapperScan("club.yuxuan.yun.datesource.*")
+public class OpenTheDoor {
 
     /**
      * application entrance
@@ -20,7 +22,7 @@ public class StarterApplication {
      * @return void
      */
     public static void main(String[] args) {
-        SpringApplication.run(StarterApplication.class, args);
+        SpringApplication.run(OpenTheDoor.class, args);
     }
     
 }
