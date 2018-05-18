@@ -21,7 +21,16 @@ public class OkHttpUtil {
         mediaType = MediaType.parse("application/json; charset=utf-8");
         client = new OkHttpClient();
     }
-    
+
+    /**
+     * 获取Util实例
+     *
+     * @author yuxuan
+     * @date 2018/5/19
+     * @param
+     * @return club.yuxuan.yun.common.util.OkHttpUtil
+     * @throws
+     */
     public static final OkHttpUtil getInstence() {
         if (okHttpUtil == null) {
             synchronized (OkHttpUtil.class) {
