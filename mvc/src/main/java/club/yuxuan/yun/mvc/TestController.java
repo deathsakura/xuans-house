@@ -1,6 +1,7 @@
 package club.yuxuan.yun.mvc;
 
-import club.yuxuan.yun.model.Test;
+import club.yuxuan.yun.api.ITestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
     
+    @Autowired
+    private ITestService testService;
+    
     @RequestMapping("/")
     public String home () {
-        return new Test().getData().toString();
+        return testService.getDate();
     }
     
 }

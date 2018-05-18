@@ -15,6 +15,8 @@
         <module>starter</module>
         <module>mvc</module>
         <module>model</module>
+        <module>api</module>
+        <module>service</module>
     </modules>
     
     <parent>
