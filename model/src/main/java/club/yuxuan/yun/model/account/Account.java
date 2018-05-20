@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Getter
 @ApiModel("账号")
 public class Account implements Serializable {
+
+    private static final long serialVersionUID = -7795804396904895045L;
     
     private String id;
     
@@ -23,7 +25,11 @@ public class Account implements Serializable {
     private String password;
 
     private String email;
-
+    
+    private String phone;
+    
+    private Boolean realName;
+    
     @Override
     public String toString() {
         return "Account{" +

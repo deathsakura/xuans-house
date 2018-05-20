@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="club.yuxuan.yun.datesource.mysql.AccountMapper">
+<mapper namespace="club.yuxuan.yun.datesource.mysql.account.AccountMapper">
 
     <select id="selectAll" resultType="club.yuxuan.yun.model.account.Account">
         SELECT id, username, password, email 

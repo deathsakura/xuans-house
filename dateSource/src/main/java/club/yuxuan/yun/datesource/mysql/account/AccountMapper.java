@@ -1,4 +1,4 @@
-package club.yuxuan.yun.datesource.mysql;
+package club.yuxuan.yun.datesource.mysql.account;
 
 import club.yuxuan.yun.model.account.Account;
 import org.apache.ibatis.annotations.Mapper;

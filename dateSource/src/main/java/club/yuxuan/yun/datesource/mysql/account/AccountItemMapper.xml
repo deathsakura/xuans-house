@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.yuxuan.yun.datesource.mysql.account.AccountItemMapper">
+    
+    <resultMap id="BaseResultMap" type="club.yuxuan.yun.model.account.AccountItem">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="accountId" jdbcType="VARCHAR" property="accountId"/>
+        <result column="key" jdbcType="VARCHAR" property="key"/>
+        <result column="value" jdbcType="VARCHAR" property="value"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="createDate" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+    
+    <sql id="fields">
+        id, accountId, key, value, remark, createDate, updateDate
+    </sql>
+    
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="fields"/>
+        from account_item
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from account_item
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="club.yuxuan.yun.model.account.AccountItem">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into account_item (accountId, key, value,
+        remark, createDate, updateDate
+        )
+        values (#{accountId,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
+        #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    
+    <insert id="insertSelective" parameterType="club.yuxuan.yun.model.account.AccountItem">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into account_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accountId != null">
+                accountId,
+            </if>
+            <if test="key != null">
+                key,
+            </if>
+            <if test="value != null">
+                value,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createDate != null">
+                createDate,
+            </if>
+            <if test="updateDate != null">
+                updateDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="accountId != null">
+                #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="key != null">
+                #{key,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="updateByPrimaryKeySelective" parameterType="club.yuxuan.yun.model.account.AccountItem">
+        update account_item
+        <set>
+            <if test="accountId != null">
+                accountId = #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="key != null">
+                key = #{key,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                value = #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <update id="updateByPrimaryKey" parameterType="club.yuxuan.yun.model.account.AccountItem">
+        update account_item
+        set accountId = #{accountId,jdbcType=VARCHAR},
+          key = #{key,jdbcType=VARCHAR},
+          value = #{value,jdbcType=VARCHAR},
+          remark = #{remark,jdbcType=VARCHAR},
+          createDate = #{createDate,jdbcType=TIMESTAMP},
+          updateDate = #{updateDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>
