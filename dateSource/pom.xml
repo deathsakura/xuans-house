@@ -15,10 +15,16 @@
 
     <properties>
         <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
-        <mysql-connector>5.1.39</mysql-connector>
+        <mysql-connector>8.0.11</mysql-connector>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>club.yuxuan.yun</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
         <!-- MySQL 连接驱动依赖 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -33,5 +39,19 @@
             <version>${mybatis-spring-boot}</version>
         </dependency>
     </dependencies>
+    
+    <build>
+        <!--静态文件打包处理,将所有的.xml、.properties结尾的文件构建为静态文件-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>
