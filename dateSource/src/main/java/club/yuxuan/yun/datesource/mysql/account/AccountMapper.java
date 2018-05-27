@@ -27,5 +27,17 @@ public interface AccountMapper {
 	 */
 	List<Account> selectAll();
 
+	Account selectByPrimaryKey(String id);
+
+	int deleteByPrimaryKey(String id);
+
+	int insert(Account record);
+
+	int insertSelective(Account record);
+
+	int updateByPrimaryKey(Account record);
+
+	int updateByPrimaryKeySelective(Account record);
+
 }
 

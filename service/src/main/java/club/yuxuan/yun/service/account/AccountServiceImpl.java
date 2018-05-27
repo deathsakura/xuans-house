@@ -18,7 +18,7 @@ import java.util.List;
  **/
 @Slf4j
 @Service("accountService")
-public class AccountService implements IAccountService {
+public class AccountServiceImpl implements IAccountService {
 	
 	@Autowired
 	private AccountMapper accountMapper;

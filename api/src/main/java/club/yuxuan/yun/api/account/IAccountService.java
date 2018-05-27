@@ -12,6 +12,15 @@ import java.util.List;
  **/
 public interface IAccountService {
 
+    /**
+     * 查询全部数据
+     *
+     * @author yuxuan
+     * @date 2018/5/27
+     * @param
+     * @return java.util.List<club.yuxuan.yun.model.account.Account>
+     * @throws
+     */
     List<Account> selectAll();
     
 }

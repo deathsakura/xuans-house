@@ -15,6 +15,11 @@
     <sql id="fields">
         id, accountId, key, value, remark, createDate, updateDate
     </sql>
+
+    <select id="selectAll" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account_item
+    </select>
     
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
@@ -22,7 +27,7 @@
         from account_item
         where id = #{id,jdbcType=VARCHAR}
     </select>
-    
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from account_item
         where id = #{id,jdbcType=VARCHAR}
