@@ -7,6 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +51,16 @@ public class TestController {
         log.warn ("######This is warn  log...");
         log.error("######this is error log...");
         return "Success...";
+    }
+    
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @ApiOperation("测试Redis连接")
+    @RequestMapping(value = "/testRedis", method = RequestMethod.POST)
+    public String testRedis() {
+        String value = redisTemplate.opsForValue().get("aaa");
+        return value;
     }
     
 }
