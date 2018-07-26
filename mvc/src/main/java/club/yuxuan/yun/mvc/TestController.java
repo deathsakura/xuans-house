@@ -2,6 +2,7 @@ package club.yuxuan.yun.mvc;
 
 import club.yuxuan.yun.api.ITestService;
 import club.yuxuan.yun.api.account.IAccountService;
+import club.yuxuan.yun.model.TestDate;
 import club.yuxuan.yun.model.account.Account;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -61,6 +62,12 @@ public class TestController {
     public String testRedis() {
         String value = redisTemplate.opsForValue().get("aaa");
         return value;
+    }
+
+    @ApiOperation("测试Date转Json")
+    @RequestMapping(value = "/testJsonFormat", method = RequestMethod.POST)
+    public TestDate testJsonFormat() {
+        return new TestDate();
     }
     
 }
