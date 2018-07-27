@@ -1,4 +1,4 @@
-package club.yuxuan.yun.mvc;
+package club.yuxuan.yun.mvc.account;
 
 import club.yuxuan.yun.api.account.IAccountService;
 import club.yuxuan.yun.model.account.Account;
@@ -26,6 +26,13 @@ public class AccountController {
     public Account selectByPrimaryKey(@ApiParam("ID") @RequestParam("id") String id) {
         Account account = accountService.selectByPrimaryKey(id);
         return account;
+    }
+    
+    @ApiOperation("根据openId查询")
+    @PostMapping("/selectByOpenId")
+    public List<Account> selectByOpenId(@ApiParam("微信openId") @RequestParam("openId") String openId) {
+        List<Account> accounts = accountService.selectByOpenId(openId);
+        return accounts;
     }
     
     @ApiOperation("根据分组ID查询")

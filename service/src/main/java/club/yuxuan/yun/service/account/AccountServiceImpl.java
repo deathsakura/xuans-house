@@ -81,4 +81,11 @@ public class AccountServiceImpl implements IAccountService {
         return rowNum;
     }
 
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    public List<Account> selectByOpenId(String openId) {
+	    List<Account> accounts = accountMapper.selectByOpenId(openId);
+        return accounts;
+    }
+
 }

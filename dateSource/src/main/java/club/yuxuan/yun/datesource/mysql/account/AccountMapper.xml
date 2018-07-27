@@ -48,6 +48,12 @@
         FROM account
         WHERE website LIKE CONCAT('%', #{website}, '%')
     </select>
+    
+    <select id="selectByOpenId" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account
+        WHERE openId = #{openId}
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from account

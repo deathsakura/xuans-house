@@ -107,5 +107,14 @@ public interface AccountMapper {
      * @return 
      */
     List<Account> queryByWebsite(@Param("website") String website);
+
+    /**
+     * 根据OpenId查询
+     * 
+     * @author yuxuan.han
+     * @date 2018/7/27
+     * @return 
+     */
+    List<Account> selectByOpenId(@Param("openId") String openId);
 }
 

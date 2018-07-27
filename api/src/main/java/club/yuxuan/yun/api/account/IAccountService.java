@@ -90,4 +90,13 @@ public interface IAccountService {
      * @return int
      */
     int deleteByPrimaryKey(String id);
+
+    /**
+     * 根据OpenId查询
+     *
+     * @author yuxuan.han
+     * @date 2018/7/27
+     * @return java.util.List<club.yuxuan.yun.model.account.Account>
+     */
+    List<Account> selectByOpenId(String openId);
 }
