@@ -29,18 +29,45 @@ public class AccountController {
     }
     
     @ApiOperation("根据分组ID查询")
-    @PostMapping("/selectByGroupId")
-    public List<Account> selectByGroupId(@ApiParam("分组ID") @RequestParam("groupId") String groupId) {
-        List<Account> accounts = accountService.selectByGroupId(groupId);
+    @PostMapping("/queryByGroupId")
+    public List<Account> queryByGroupId(@ApiParam("分组ID") @RequestParam("groupId") String groupId) {
+        List<Account> accounts = accountService.queryByGroupId(groupId);
         return accounts;
     }
     
     @ApiOperation("根据用户名查询")
     @PostMapping("/queryByUsername")
     public List<Account> queryByUsername(@ApiParam("用户名") @RequestParam("username") String username) {
-        
         List<Account> accounts = accountService.queryByUsername(username);
         return accounts;
+    }
+    
+    @ApiOperation("根据网站查询")
+    @PostMapping("/queryByWebsite")
+    public List<Account> queryByWebsite(@ApiParam("website") @RequestParam("website") String website) {
+        List<Account> accounts = accountService.queryByWebsite(website);
+        return accounts;
+    }
+    
+    @ApiOperation("添加账号")
+    @PostMapping("/addAccount")
+    public String addAccount(Account account) {
+        int rowNum = accountService.addAccount(account);
+        return "success: " + rowNum;
+    }
+    
+    @ApiOperation("根据主键更新")
+    @PostMapping("/updateByPrimaryKey")
+    public String updateByPrimaryKey(Account account) {
+        int rowNum = accountService.updateByPrimaryKey(account);
+        return "success: " + rowNum;
+    }
+
+    @ApiOperation("根据主键删除")
+    @PostMapping("/deleteByPrimaryKey")
+    public String deleteByPrimaryKey(@ApiParam("ID") @RequestParam("id") String id) {
+        int rowNum = accountService.deleteByPrimaryKey(id);
+        return "Success: " + rowNum;
     }
     
 }

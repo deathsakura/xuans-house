@@ -88,10 +88,12 @@ public class Account implements Serializable {
     public String toString() {
         return "Account{" +
                 "id='" + id + '\'' +
+                ", website='" + website + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", groupId='" + groupId + '\'' +
                 ", realName=" + realName +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +

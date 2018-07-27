@@ -9,14 +9,14 @@
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
-        <result column="groupId" jdbcType="VARCHAR" property="groupId"/>
         <result column="realName" jdbcType="BIT" property="realName"/>
+        <result column="groupId" jdbcType="VARCHAR" property="groupId"/>
         <result column="createDate" jdbcType="TIMESTAMP" property="createDate"/>
         <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate"/>
     </resultMap>
 
     <sql id="fields">
-        id, username, password, email, phone, realName, createDate, updateDate
+        id, website, username, password, email, phone, realName, groupId, createDate, updateDate
     </sql>
 
     <select id="selectAll" resultType="club.yuxuan.yun.model.account.Account">
@@ -30,16 +30,22 @@
         where id = #{id,jdbcType=VARCHAR}
     </select>
     
-    <select id="queryByUsername" resultType="club.yuxuan.yun.model.account.Account">
+    <select id="queryByUsername" parameterType="string" resultType="club.yuxuan.yun.model.account.Account">
         SELECT <include refid="fields" />
         FROM account 
         WHERE username LIKE CONCAT('%', #{username}, '%')
     </select>
     
-    <select id="selectByGroupId" resultType="club.yuxuan.yun.model.account.Account">
+    <select id="queryByGroupId" parameterType="string" resultType="club.yuxuan.yun.model.account.Account">
         SELECT <include refid="fields" />
         FROM account
         WHERE groupId = #{groupId}
+    </select>
+    
+    <select id="queryByWebsite" parameterType="string" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account
+        WHERE website LIKE CONCAT('%', #{website}, '%')
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

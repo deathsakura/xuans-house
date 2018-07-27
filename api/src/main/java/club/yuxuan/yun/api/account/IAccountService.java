@@ -48,7 +48,46 @@ public interface IAccountService {
      * @date 2018/7/27
      * @param groupId
      * @return java.util.List<club.yuxuan.yun.model.account.Account>
-     * @throws
      */
-    List<Account> selectByGroupId(String groupId);
+    List<Account> queryByGroupId(String groupId);
+
+    /**
+     * 根据站点查询
+     * 
+     * @author yuxuan.han
+     * @date 2018/7/27
+     * @param website
+     * @return java.util.List<club.yuxuan.yun.model.account.Account>
+     */
+    List<Account> queryByWebsite(String website);
+    
+    /**
+     * 添加账号
+     *
+     * @author yuxuan.han
+     * @date 2018/7/27
+     * @param account 
+     * @return int
+     */
+    int addAccount(Account account);
+
+    /**
+     * 根据主键更新
+     *
+     * @author yuxuan.han
+     * @date 2018/7/27
+     * @param account
+     * @return int
+     */
+    int updateByPrimaryKey(Account account);
+
+    /**
+     * 根据主键删除
+     *
+     * @author yuxuan.han
+     * @date 2018/7/27
+     * @param id
+     * @return int
+     */
+    int deleteByPrimaryKey(String id);
 }

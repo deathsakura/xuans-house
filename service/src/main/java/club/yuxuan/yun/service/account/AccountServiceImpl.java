@@ -48,8 +48,37 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
-    public List<Account> selectByGroupId(String groupId) {
-        List<Account> accounts = accountMapper.selectByGroupId(groupId);
+    public List<Account> queryByGroupId(String groupId) {
+        List<Account> accounts = accountMapper.queryByGroupId(groupId);
         return accounts;
     }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    public List<Account> queryByWebsite(String website) {
+	    List<Account> accounts = accountMapper.queryByWebsite(website);
+        return accounts;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public int addAccount(Account account) {
+        int rowNum = accountMapper.insert(account);
+        return rowNum;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public int updateByPrimaryKey(Account account) {
+        int rowNum = accountMapper.updateByPrimaryKey(account);
+        return rowNum;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public int deleteByPrimaryKey(String id) {
+	    int rowNum = accountMapper.deleteByPrimaryKey(id);
+        return rowNum;
+    }
+
 }
