@@ -3,6 +3,7 @@ package club.yuxuan.yun.model.account;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,12 @@ public class Account implements Serializable {
      */
     @ApiModelProperty("ID")
     private String id;
+
+    /**
+     * openId
+     */
+    @ApiModelProperty("openId")
+    private String openId;
 
     /**
      * 网站

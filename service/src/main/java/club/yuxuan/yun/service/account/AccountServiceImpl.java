@@ -27,7 +27,7 @@ public class AccountServiceImpl implements IAccountService {
 	@Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
 	public List<Account> selectAll() {
 		List<Account> accounts = accountMapper.selectAll();
-		log.debug("######selectAll_result: {}", accounts);
+//		log.debug("######selectAll_result: {}", accounts);
 		return accounts;
 	}
 
@@ -35,7 +35,7 @@ public class AccountServiceImpl implements IAccountService {
 	@Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
 	public List<Account> queryByUsername(String username) {
         List<Account> accounts = accountMapper.queryByUsername(username);
-        log.debug("######queryByUsername_result: {}", accounts);
+//        log.debug("######queryByUsername_result: {}", accounts);
 		return accounts;
 	}
 

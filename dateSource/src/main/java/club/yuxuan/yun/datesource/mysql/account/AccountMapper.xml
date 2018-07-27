@@ -4,6 +4,7 @@
 
     <resultMap id="BaseResultMap" type="club.yuxuan.yun.model.account.Account">
         <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="openId" jdbcType="VARCHAR" property="openId"/>
         <result column="website" jdbcType="VARCHAR" property="website"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -16,7 +17,7 @@
     </resultMap>
 
     <sql id="fields">
-        id, website, username, password, email, phone, realName, groupId, createDate, updateDate
+        id, openId, website, username, password, email, phone, realName, groupId, createDate, updateDate
     </sql>
 
     <select id="selectAll" resultType="club.yuxuan.yun.model.account.Account">
@@ -57,12 +58,14 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into account (id, website, username, password, email, 
+        insert into account (id, openId, website, 
+            username, password, email, 
             phone, realName, groupId, 
             createDate, updateDate)
-        values (UUID(), #{website,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-            #{phone,jdbcType=VARCHAR}, #{realname,jdbcType=BIT}, #{groupId,jdbcType=VARCHAR}, 
-            #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP})
+        values (UUID(), #{openId,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+            #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+            #{phone,jdbcType=VARCHAR}, #{realName,jdbcType=BIT}, #{groupId,jdbcType=VARCHAR}, 
+            now(), #{updateDate,jdbcType=TIMESTAMP})
     </insert>
     
     <insert id="insertSelective" parameterType="club.yuxuan.yun.model.account.Account">
@@ -72,6 +75,9 @@
         insert into account
         <trim prefix="(" suffix=")" suffixOverrides=",">
             id,
+            <if test="openId != null">
+                openId,
+            </if>
             <if test="website != null">
                 website,
             </if>
@@ -87,7 +93,7 @@
             <if test="phone != null">
                 phone,
             </if>
-            <if test="realname != null">
+            <if test="realName != null">
                 realName,
             </if>
             <if test="groupId != null">
@@ -96,12 +102,15 @@
             <if test="createdate != null">
                 createDate,
             </if>
-            <if test="updatedate != null">
+            <if test="updateDate != null">
                 updateDate,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             UUID(), 
+            <if test="openId != null">
+                #{openId,jdbcType=VARCHAR},
+            </if>
             <if test="website != null">
                 #{website,jdbcType=VARCHAR},
             </if>
@@ -117,17 +126,17 @@
             <if test="phone != null">
                 #{phone,jdbcType=VARCHAR},
             </if>
-            <if test="realname != null">
-                #{realname,jdbcType=BIT},
+            <if test="realName != null">
+                #{realName,jdbcType=BIT},
             </if>
             <if test="groupId != null">
                 #{groupId,jdbcType=BIT},
             </if>
             <if test="createdate != null">
-                #{createdate,jdbcType=TIMESTAMP},
+                now(),
             </if>
-            <if test="updatedate != null">
-                #{updatedate,jdbcType=TIMESTAMP},
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -135,6 +144,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="club.yuxuan.yun.model.account.Account">
         update account
         <set>
+            <if test="openId != null">
+                openId = #{openId,jdbcType=VARCHAR},
+            </if>
             <if test="website != null">
                 website = #{website,jdbcType=VARCHAR},
             </if>
@@ -150,8 +162,8 @@
             <if test="phone != null">
                 phone = #{phone,jdbcType=VARCHAR},
             </if>
-            <if test="realname != null">
-                realName = #{realname,jdbcType=BIT},
+            <if test="realName != null">
+                realName = #{realName,jdbcType=BIT},
             </if>
             <if test="groupId != null">
                 groupId = #{groupId,jdbcType=BIT},
@@ -159,8 +171,8 @@
             <if test="createdate != null">
                 createDate = #{createdate,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatedate != null">
-                updateDate = #{updatedate,jdbcType=TIMESTAMP},
+            <if test="updateDate != null">
+                updateDate = #{updateDate,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=VARCHAR}
@@ -169,14 +181,15 @@
     <update id="updateByPrimaryKey" parameterType="club.yuxuan.yun.model.account.Account">
         update account
         set website = #{website,jdbcType=VARCHAR},
+            openId = #{openId,jdbcType=VARCHAR},
             username = #{username,jdbcType=VARCHAR},
             password = #{password,jdbcType=VARCHAR},
             email = #{email,jdbcType=VARCHAR},
             phone = #{phone,jdbcType=VARCHAR},
-            realName = #{realname,jdbcType=BIT},
+            realName = #{realName,jdbcType=BIT},
             groupId = #{groupId,jdbcType=VARCHAR},
             createDate = #{createdate,jdbcType=TIMESTAMP},
-            updateDate = #{updatedate,jdbcType=TIMESTAMP}
+            updateDate = #{updateDate,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=VARCHAR}
     </update>
 
