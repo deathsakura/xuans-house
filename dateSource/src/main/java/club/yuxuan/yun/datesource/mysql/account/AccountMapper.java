@@ -2,6 +2,7 @@ package club.yuxuan.yun.datesource.mysql.account;
 
 import club.yuxuan.yun.model.account.Account;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,5 +40,8 @@ public interface AccountMapper {
 
 	int updateByPrimaryKeySelective(Account record);
 
+    List<Account> queryByUsername(@Param("username") String username);
+
+    List<Account> selectByGroupId(@Param("groupId") String groupId);
 }
 

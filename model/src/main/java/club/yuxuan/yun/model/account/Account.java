@@ -29,6 +29,12 @@ public class Account implements Serializable {
     private String id;
 
     /**
+     * 网站
+     */
+    @ApiModelProperty("网站")
+    private String website;
+
+    /**
      * 用户名
      */
     @ApiModelProperty("用户名")
@@ -51,6 +57,12 @@ public class Account implements Serializable {
      */
     @ApiModelProperty("手机")
     private String phone;
+
+    /**
+     * 分组ID
+     */
+    @ApiModelProperty("分组ID")
+    private String groupId;
 
     /**
      * 是否实名

@@ -30,4 +30,26 @@ public class AccountServiceImpl implements IAccountService {
 		log.debug("######selectAll_result: {}", accounts);
 		return accounts;
 	}
+
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+	public List<Account> queryByUsername(String username) {
+        List<Account> accounts = accountMapper.queryByUsername(username);
+        log.debug("######queryByUsername_result: {}", accounts);
+		return accounts;
+	}
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    public Account selectByPrimaryKey(String id) {
+	    Account account = accountMapper.selectByPrimaryKey(id);
+        return account;
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    public List<Account> selectByGroupId(String groupId) {
+        List<Account> accounts = accountMapper.selectByGroupId(groupId);
+        return accounts;
+    }
 }

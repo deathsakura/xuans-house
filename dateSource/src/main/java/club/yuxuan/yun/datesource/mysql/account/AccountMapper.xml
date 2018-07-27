@@ -4,10 +4,12 @@
 
     <resultMap id="BaseResultMap" type="club.yuxuan.yun.model.account.Account">
         <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="website" jdbcType="VARCHAR" property="website"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="groupId" jdbcType="VARCHAR" property="groupId"/>
         <result column="realName" jdbcType="BIT" property="realName"/>
         <result column="createDate" jdbcType="TIMESTAMP" property="createDate"/>
         <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate"/>
@@ -28,6 +30,18 @@
         where id = #{id,jdbcType=VARCHAR}
     </select>
     
+    <select id="queryByUsername" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account 
+        WHERE username LIKE CONCAT('%', #{username}, '%')
+    </select>
+    
+    <select id="selectByGroupId" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account
+        WHERE groupId = #{groupId}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from account
         where id = #{id,jdbcType=VARCHAR}
