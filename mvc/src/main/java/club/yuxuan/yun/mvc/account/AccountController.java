@@ -77,4 +77,11 @@ public class AccountController {
         return "Success: " + rowNum;
     }
     
+    @ApiOperation("密码查询")
+    @PostMapping("/selectPasswordById")
+    public String selectPasswordById(@ApiParam("ID") @RequestParam("id") String id) {
+        String account = accountService.selectPasswordById(id);
+        return account;
+    }
+    
 }

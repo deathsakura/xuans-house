@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @description 账号
@@ -106,4 +107,27 @@ public class Account implements Serializable {
                 ", updateDate=" + updateDate +
                 '}';
     }
+
+    /**
+     * 清除账号信息中的密码
+     *
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return void
+     */
+    public void removePassword() {
+        this.password = null;
+    }
+
+    /**
+     * 批量清除密码
+     *
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return void
+     */
+    public static final void removePassword(List<Account> accounts) {
+        accounts.forEach(Account::removePassword);
+    }
+    
 }

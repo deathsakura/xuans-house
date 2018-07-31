@@ -116,5 +116,14 @@ public interface AccountMapper {
      * @return 
      */
     List<Account> selectByOpenId(@Param("openId") String openId);
+
+    /**
+     * 根据ID查询密码
+     *
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return java.lang.String
+     */
+    String selectPasswordById(@Param("id") String id);
 }
 

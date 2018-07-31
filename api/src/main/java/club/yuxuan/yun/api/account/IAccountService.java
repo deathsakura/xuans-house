@@ -99,4 +99,13 @@ public interface IAccountService {
      * @return java.util.List<club.yuxuan.yun.model.account.Account>
      */
     List<Account> selectByOpenId(String openId);
+
+    /**
+     * 根据ID查询密码
+     *      *** 唯一的展示密码接口 ***
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return club.yuxuan.yun.model.account.Account
+     */
+    String selectPasswordById(String id);
 }

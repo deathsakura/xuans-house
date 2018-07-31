@@ -28,6 +28,7 @@ public class AccountServiceImpl implements IAccountService {
 	public List<Account> selectAll() {
 		List<Account> accounts = accountMapper.selectAll();
 //		log.debug("######selectAll_result: {}", accounts);
+        accounts.forEach(Account::removePassword);
 		return accounts;
 	}
 
@@ -36,6 +37,7 @@ public class AccountServiceImpl implements IAccountService {
 	public List<Account> queryByUsername(String username) {
         List<Account> accounts = accountMapper.queryByUsername(username);
 //        log.debug("######queryByUsername_result: {}", accounts);
+        accounts.forEach(Account::removePassword);
 		return accounts;
 	}
 
@@ -43,6 +45,7 @@ public class AccountServiceImpl implements IAccountService {
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     public Account selectByPrimaryKey(String id) {
 	    Account account = accountMapper.selectByPrimaryKey(id);
+        account.removePassword();
         return account;
     }
 
@@ -50,6 +53,7 @@ public class AccountServiceImpl implements IAccountService {
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     public List<Account> queryByGroupId(String groupId) {
         List<Account> accounts = accountMapper.queryByGroupId(groupId);
+        accounts.forEach(Account::removePassword);
         return accounts;
     }
 
@@ -57,6 +61,7 @@ public class AccountServiceImpl implements IAccountService {
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     public List<Account> queryByWebsite(String website) {
 	    List<Account> accounts = accountMapper.queryByWebsite(website);
+        accounts.forEach(Account::removePassword);
         return accounts;
     }
 
@@ -85,7 +90,15 @@ public class AccountServiceImpl implements IAccountService {
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     public List<Account> selectByOpenId(String openId) {
 	    List<Account> accounts = accountMapper.selectByOpenId(openId);
+        accounts.forEach(Account::removePassword);
         return accounts;
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    public String selectPasswordById(String id) {
+	    String pwd = accountMapper.selectPasswordById(id);
+        return pwd;
     }
 
 }
