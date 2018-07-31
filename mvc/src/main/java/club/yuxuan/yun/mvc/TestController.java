@@ -7,12 +7,14 @@ import club.yuxuan.yun.model.account.Account;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,17 +32,21 @@ public class TestController {
     private ITestService testService;
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
     
-    @ApiOperation("测试接口")
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ApiOperation("测试服务器启动")
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
     public String home () {
-        return testService.getDate();
+        String date = testService.getDate();
+        return date;
     }
     
-    @ApiOperation("查询全部")
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public List<Account> getAll() {
-        return accountService.selectAll();
+    @ApiOperation("测试MySql连接")
+    @RequestMapping(value = "/testMysql", method = RequestMethod.POST)
+    public String testMysql() {
+        Date date = accountService.testMysql();
+        return new DateTime(date).toString("yyyy-MM-dd HH:mm:sss");
     }
     
     @ApiOperation("测试日志")
@@ -53,9 +59,6 @@ public class TestController {
         return "Success...";
     }
     
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-
     @ApiOperation("测试Redis连接")
     @RequestMapping(value = "/testRedis", method = RequestMethod.POST)
     public String testRedis() {

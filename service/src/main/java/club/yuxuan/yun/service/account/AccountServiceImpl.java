@@ -1,6 +1,7 @@
 package club.yuxuan.yun.service.account;
 
 import club.yuxuan.yun.api.account.IAccountService;
+import club.yuxuan.yun.datesource.mysql.DualMapper;
 import club.yuxuan.yun.datesource.mysql.account.AccountMapper;
 import club.yuxuan.yun.model.account.Account;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 /**
  * @description 账号Service
@@ -20,6 +22,8 @@ import java.util.List;
 @Service("accountService")
 public class AccountServiceImpl implements IAccountService {
 	
+    @Autowired
+    private DualMapper dual;
 	@Autowired
 	private AccountMapper accountMapper;
 
@@ -27,7 +31,6 @@ public class AccountServiceImpl implements IAccountService {
 	@Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
 	public List<Account> selectAll() {
 		List<Account> accounts = accountMapper.selectAll();
-//		log.debug("######selectAll_result: {}", accounts);
         accounts.forEach(Account::removePassword);
 		return accounts;
 	}
@@ -36,7 +39,6 @@ public class AccountServiceImpl implements IAccountService {
 	@Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
 	public List<Account> queryByUsername(String username) {
         List<Account> accounts = accountMapper.queryByUsername(username);
-//        log.debug("######queryByUsername_result: {}", accounts);
         accounts.forEach(Account::removePassword);
 		return accounts;
 	}
@@ -99,6 +101,13 @@ public class AccountServiceImpl implements IAccountService {
     public String selectPasswordById(String id) {
 	    String pwd = accountMapper.selectPasswordById(id);
         return pwd;
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    public Date testMysql() {
+	    Date now = dual.getSysDate();
+        return now;
     }
 
 }

@@ -2,6 +2,7 @@ package club.yuxuan.yun.api.account;
 
 import club.yuxuan.yun.model.account.Account;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -108,4 +109,13 @@ public interface IAccountService {
      * @return club.yuxuan.yun.model.account.Account
      */
     String selectPasswordById(String id);
+
+    /**
+     * 测试MySql连接
+     *
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return java.util.Date
+     */
+    Date testMysql();
 }

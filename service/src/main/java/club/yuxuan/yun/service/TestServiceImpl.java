@@ -21,8 +21,4 @@ public class TestServiceImpl implements ITestService {
         return String.valueOf(new DateTest().getData());
     }
 
-    public static void main(String[] args) {
-        
-    }
-    
 }
