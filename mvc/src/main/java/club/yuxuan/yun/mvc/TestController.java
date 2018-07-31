@@ -2,14 +2,13 @@ package club.yuxuan.yun.mvc;
 
 import club.yuxuan.yun.api.ITestService;
 import club.yuxuan.yun.api.account.IAccountService;
-import club.yuxuan.yun.model.TestDate;
+import club.yuxuan.yun.model.DateTest;
 import club.yuxuan.yun.model.account.Account;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,8 +65,8 @@ public class TestController {
 
     @ApiOperation("测试Date转Json")
     @RequestMapping(value = "/testJsonFormat", method = RequestMethod.POST)
-    public TestDate testJsonFormat() {
-        return new TestDate();
+    public DateTest testJsonFormat() {
+        return new DateTest();
     }
     
 }

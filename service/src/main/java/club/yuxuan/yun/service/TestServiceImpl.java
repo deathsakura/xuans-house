@@ -1,7 +1,7 @@
 package club.yuxuan.yun.service;
 
 import club.yuxuan.yun.api.ITestService;
-import club.yuxuan.yun.model.TestDate;
+import club.yuxuan.yun.model.DateTest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class TestServiceImpl implements ITestService {
     @Override
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     public String getDate() {
-        return String.valueOf(new TestDate().getData());
+        return String.valueOf(new DateTest().getData());
     }
 
     public static void main(String[] args) {

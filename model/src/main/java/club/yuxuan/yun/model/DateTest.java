@@ -8,19 +8,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * @description 测试类
+ * @description 日期测试类
  *
  * @author yuxuan.han
  * @date 2018/5/18
  **/
 @Getter
 @Setter
-public class TestDate {
+public class DateTest {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:sss", timezone="GMT+8")
     private Date data;
     
-    public TestDate() {
+    public DateTest() {
         this.data = new Date();
     }
     

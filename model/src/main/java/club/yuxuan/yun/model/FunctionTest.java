@@ -6,16 +6,12 @@ import java.util.*;
 import java.util.function.*;
 
 /**
- * @description Lambda表达式的测试
+ * @description JDK8 Function Test
  *
  * @author yuxuan.han
  * @date 2018/7/31
  **/
 public class FunctionTest {
-
-    public static void main(String[] args) {
-
-    }
 
     /**
      * java.util.function.Predicate
@@ -118,5 +114,5 @@ public class FunctionTest {
         String concat = concatFunction.apply("abc", "123");
         System.out.println(concat);
     }
-
+    
 }

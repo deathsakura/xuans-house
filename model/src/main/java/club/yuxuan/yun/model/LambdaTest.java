@@ -1,23 +1,32 @@
 package club.yuxuan.yun.model;
 
-public class Java8Tester {
+import org.junit.jupiter.api.Test;
+
+/**
+ * @description JDK8 Lambda Test
+ *
+ * @author yuxuan.han
+ * @date 2018/7/31
+ **/
+public class LambdaTest {
     
     final static String str = "Hello ";
     
-    public static void main(String[] args) {
+    @Test
+    public void mainTest() {
         GreetingService greetingService = message -> {
             System.out.println(message);
             System.out.println(str + message);
         };
         greetingService.sayMessage("aaa");
         greetingService.sayMessage("bbb");
-        
+
         TestService testService = (a, b, c) -> {
             System.out.println("a: " + a);
             System.out.println("b: " + b);
             System.out.println("c: " + c);
         };
-        
+
         testService.methodA("1", "2", 3);
     }
     
