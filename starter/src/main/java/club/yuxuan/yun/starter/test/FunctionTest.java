@@ -1,4 +1,4 @@
-package club.yuxuan.yun.model;
+package club.yuxuan.yun.starter.test;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class FunctionTest {
     @Test
     public void testConsumer() {
         Consumer<String> messageConsumer = message -> System.out.println(message);
-        messageConsumer.accept("club.yuxuan.yun.model.FunctionTest.testConsumer");
+        messageConsumer.accept("club.yuxuan.yun.starter.test.FunctionTest.testConsumer");
     }
 
     /**

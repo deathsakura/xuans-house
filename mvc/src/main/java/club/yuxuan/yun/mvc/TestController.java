@@ -2,8 +2,7 @@ package club.yuxuan.yun.mvc;
 
 import club.yuxuan.yun.api.ITestService;
 import club.yuxuan.yun.api.account.IAccountService;
-import club.yuxuan.yun.model.DateTest;
-import club.yuxuan.yun.model.account.Account;
+import club.yuxuan.yun.model.test.DateTest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @description 测试类
@@ -34,6 +32,12 @@ public class TestController {
     private IAccountService accountService;
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+    
+    @ApiOperation("唯一的get请求")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
+        return "<h1>hello, world</h1>";
+    }
     
     @ApiOperation("测试服务器启动")
     @RequestMapping(value = "/test", method = RequestMethod.POST)

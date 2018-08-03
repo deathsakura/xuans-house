@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2018/5/12
  **/
 @SpringBootApplication(scanBasePackages = "club.yuxuan.yun.*")
-@MapperScan("club.yuxuan.yun.datesource.**")
 public class OpenTheDoor {
 
     /**

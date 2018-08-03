@@ -1,4 +1,4 @@
-package club.yuxuan.yun.model;
+package club.yuxuan.yun.starter.test;
 
 import org.junit.jupiter.api.Test;
 

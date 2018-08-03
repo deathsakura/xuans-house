@@ -20,6 +20,11 @@
     <dependencies>
         <dependency>
             <groupId>club.yuxuan.yun</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>club.yuxuan.yun</groupId>
             <artifactId>mvc</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -33,6 +38,11 @@
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>club.yuxuan.yun</groupId>
+            <artifactId>wechat</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -40,6 +50,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>club.yuxuan.yun.starter.OpenTheDoor</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -1,7 +1,7 @@
 package club.yuxuan.yun.service;
 
 import club.yuxuan.yun.api.ITestService;
-import club.yuxuan.yun.model.DateTest;
+import club.yuxuan.yun.model.test.DateTest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

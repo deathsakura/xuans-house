@@ -1,4 +1,4 @@
-package club.yuxuan.yun.model;
+package club.yuxuan.yun.starter.test;
 /**
  * @description JDK8 Stream Test
  *
