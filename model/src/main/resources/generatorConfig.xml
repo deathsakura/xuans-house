@@ -5,7 +5,7 @@
 <generatorConfiguration>
 
     <!-- 本地数据库驱动程序jar包的全路径 -->
-    <classPathEntry location=""/>
+    <classPathEntry location="D:\yuxuan\mysql-connector-java-8.0.11.jar"/>
 
     <context id="context" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -14,8 +14,8 @@
         </commentGenerator>
 
         <!-- 数据库的相关配置 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
-                        connectionURL="jdbc:mysql://47.94.245.150:3306/xuans_house?useUnicode=true" 
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" 
+                        connectionURL="jdbc:mysql://47.94.245.150:3306/xuans_house?useSSL=false" 
                         userId="root" 
                         password=""/>
 
