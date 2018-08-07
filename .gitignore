@@ -23,4 +23,5 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-/starter/src/main/resources/application.properties
+*/target/
+*.class

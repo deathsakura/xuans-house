@@ -2,9 +2,205 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="club.yuxuan.yun.datesource.mysql.account.AccountMapper">
 
+    <resultMap id="BaseResultMap" type="club.yuxuan.yun.model.account.Account">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="openId" jdbcType="VARCHAR" property="openId"/>
+        <result column="website" jdbcType="VARCHAR" property="website"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="realName" jdbcType="BIT" property="realName"/>
+        <result column="groupId" jdbcType="VARCHAR" property="groupId"/>
+        <result column="createDate" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+
+    <sql id="fields">
+        id, openId, website, username, password, email, phone, realName, groupId, createDate, updateDate
+    </sql>
+
     <select id="selectAll" resultType="club.yuxuan.yun.model.account.Account">
-        SELECT id, username, password, email 
+        SELECT <include refid="fields" />
         FROM account
     </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="fields"/>
+        from account
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
     
+    <select id="queryByUsername" parameterType="string" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account 
+        WHERE username LIKE CONCAT('%', #{username}, '%')
+    </select>
+    
+    <select id="queryByGroupId" parameterType="string" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account
+        WHERE groupId = #{groupId}
+    </select>
+    
+    <select id="queryByWebsite" parameterType="string" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account
+        WHERE website LIKE CONCAT('%', #{website}, '%')
+    </select>
+    
+    <select id="selectByOpenId" resultType="club.yuxuan.yun.model.account.Account">
+        SELECT <include refid="fields" />
+        FROM account
+        WHERE openId = #{openId}
+    </select>
+    
+    <select id="selectPasswordById" parameterType="string" resultType="java.lang.String">
+        SELECT password FROM account WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from account
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    
+    <insert id="insert" parameterType="club.yuxuan.yun.model.account.Account">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into account (id, openId, website, 
+            username, password, email, 
+            phone, realName, groupId, 
+            createDate, updateDate)
+        values (UUID(), #{openId,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+            #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+            #{phone,jdbcType=VARCHAR}, #{realName,jdbcType=BIT}, #{groupId,jdbcType=VARCHAR}, 
+            now(), #{updateDate,jdbcType=TIMESTAMP})
+    </insert>
+    
+    <insert id="insertSelective" parameterType="club.yuxuan.yun.model.account.Account">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+        SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="openId != null">
+                openId,
+            </if>
+            <if test="website != null">
+                website,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="realName != null">
+                realName,
+            </if>
+            <if test="groupId != null">
+                groupId,
+            </if>
+            <if test="createdate != null">
+                createDate,
+            </if>
+            <if test="updateDate != null">
+                updateDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            UUID(), 
+            <if test="openId != null">
+                #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="website != null">
+                #{website,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=BIT},
+            </if>
+            <if test="groupId != null">
+                #{groupId,jdbcType=BIT},
+            </if>
+            <if test="createdate != null">
+                now(),
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="updateByPrimaryKeySelective" parameterType="club.yuxuan.yun.model.account.Account">
+        update account
+        <set>
+            <if test="openId != null">
+                openId = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="website != null">
+                website = #{website,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                realName = #{realName,jdbcType=BIT},
+            </if>
+            <if test="groupId != null">
+                groupId = #{groupId,jdbcType=BIT},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    
+    <update id="updateByPrimaryKey" parameterType="club.yuxuan.yun.model.account.Account">
+        update account
+        set website = #{website,jdbcType=VARCHAR},
+            openId = #{openId,jdbcType=VARCHAR},
+            username = #{username,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            phone = #{phone,jdbcType=VARCHAR},
+            realName = #{realName,jdbcType=BIT},
+            groupId = #{groupId,jdbcType=VARCHAR},
+            createDate = #{createdate,jdbcType=TIMESTAMP},
+            updateDate = #{updateDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
 </mapper>

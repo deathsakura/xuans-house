@@ -3,11 +3,13 @@ package club.yuxuan.yun.model.account;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @description 账号
@@ -27,6 +29,18 @@ public class Account implements Serializable {
      */
     @ApiModelProperty("ID")
     private String id;
+
+    /**
+     * openId
+     */
+    @ApiModelProperty("openId")
+    private String openId;
+
+    /**
+     * 网站
+     */
+    @ApiModelProperty("网站")
+    private String website;
 
     /**
      * 用户名
@@ -53,6 +67,12 @@ public class Account implements Serializable {
     private String phone;
 
     /**
+     * 分组ID
+     */
+    @ApiModelProperty("分组ID")
+    private String groupId;
+
+    /**
      * 是否实名
      */
     @ApiModelProperty("是否实名")
@@ -76,13 +96,38 @@ public class Account implements Serializable {
     public String toString() {
         return "Account{" +
                 "id='" + id + '\'' +
+                ", website='" + website + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", groupId='" + groupId + '\'' +
                 ", realName=" + realName +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
                 '}';
     }
+
+    /**
+     * 清除账号信息中的密码
+     *
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return void
+     */
+    public void removePassword() {
+        this.password = null;
+    }
+
+    /**
+     * 批量清除密码
+     *
+     * @author yuxuan.han
+     * @date 2018/7/31
+     * @return void
+     */
+    public static final void removePassword(List<Account> accounts) {
+        accounts.forEach(Account::removePassword);
+    }
+    
 }
