@@ -31,7 +31,7 @@ public class Swagger2Config {
 	}
 
 	private ApiInfo apiInfo() {
-		Contact contact = new Contact("yuxuan.han", "https://github.com/yuxuanjava/xuans-house", "han630389657@vip.qq.com");
+		Contact contact = new Contact("yuxuan.han", "https://github.com/yuxuanjava/xuans-house", "xuans_house@163.com");
 		return new ApiInfoBuilder()
 				.title("使用Swagger2构建后台接口API")
 				.description("简单优雅的rest fun风格")
