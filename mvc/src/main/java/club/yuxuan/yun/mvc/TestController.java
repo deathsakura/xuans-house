@@ -2,7 +2,7 @@ package club.yuxuan.yun.mvc;
 
 import club.yuxuan.yun.api.ITestService;
 import club.yuxuan.yun.api.account.IAccountService;
-import club.yuxuan.yun.model.test.DateTest;
+import club.yuxuan.yun.model.DateTest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
