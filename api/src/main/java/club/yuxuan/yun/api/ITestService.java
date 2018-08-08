@@ -1,6 +1,6 @@
 package club.yuxuan.yun.api;
 /**
- * @description 111
+ * @description 测试Service
  *
  * @author yuxuan.han
  * @date 2018/5/18
@@ -8,7 +8,7 @@ package club.yuxuan.yun.api;
 public interface ITestService {
 
     /**
-     * 111
+     * 测试接口
      *
      * @author yuxuan.han
      * @date 2018/5/18
