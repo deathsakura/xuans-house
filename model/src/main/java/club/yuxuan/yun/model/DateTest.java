@@ -1,4 +1,4 @@
-package club.yuxuan.yun.model.test;
+package club.yuxuan.yun.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

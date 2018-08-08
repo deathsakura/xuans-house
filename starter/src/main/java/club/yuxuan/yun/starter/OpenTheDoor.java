@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author yuxuan
  * @date 2018/5/12
  **/
-@SpringBootApplication(scanBasePackages = "club.yuxuan.yun.*")
+@SpringBootApplication(scanBasePackages = "club.yuxuan.yun.**")
 public class OpenTheDoor {
 
     /**

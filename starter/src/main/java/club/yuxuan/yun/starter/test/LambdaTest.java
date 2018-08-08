@@ -1,6 +1,6 @@
 package club.yuxuan.yun.starter.test;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * @description JDK8 Lambda Test
