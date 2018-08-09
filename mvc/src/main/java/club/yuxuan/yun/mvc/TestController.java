@@ -5,12 +5,14 @@ import club.yuxuan.yun.api.account.IAccountService;
 import club.yuxuan.yun.model.DateTest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -74,6 +76,14 @@ public class TestController {
     @RequestMapping(value = "/testJsonFormat", method = RequestMethod.POST)
     public DateTest testJsonFormat() {
         return new DateTest();
+    }
+    
+    @ApiOperation("获取Redis中的值")
+    @RequestMapping(value = "/getRedisValue", method = RequestMethod.POST)
+    public String getRedisValue(@ApiParam("key") @RequestParam("key") String key) {
+        String value = redisTemplate.opsForValue().get(key);
+        log.debug("######TestController_getRedisValue: {}, {}", key, value);
+        return value;
     }
     
 }
